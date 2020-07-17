@@ -11,3 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+footer{
+    position: absolute;
+    bottom: 0;
+}
+
+
+.slot-machine {
+    height: 400px;
+    width: 400px;
+    position: relative;
+    background: rgba(0, 0, 0, 0.3);
+}
