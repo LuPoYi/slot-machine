@@ -16,6 +16,7 @@ class SlotMachine extends Component {
       height: 4000,
       duration: 4000, // time
       finalPosition: 0,
+      isLoading: false,
       isFinished: false,
     }
     this.handleClick = this.handleClick.bind(this)
@@ -28,6 +29,7 @@ class SlotMachine extends Component {
       pickIndex: pickIndex,
       startedAt: null,
       finalPosition: pickIndex * this.state.itemHeight,
+      isLoading: true,
       isFinished: false,
     })
 
@@ -55,7 +57,7 @@ class SlotMachine extends Component {
     ReactDom.findDOMNode(slotWrap).style.transform = "translateY(" + position + "px)"
 
     if (timeDiff > this.state.duration) {
-      this.setState({ isFinished: true })
+      this.setState({ isFinished: true, isLoading: false })
     }
 
     const next = window.requestAnimationFrame ||
@@ -75,11 +77,12 @@ class SlotMachine extends Component {
             <SlotWrap />
           </div>
         </div>
+        <br />
+        <button onClick={this.handleClick} disabled={this.state.isLoading}>{this.state.isLoading ? "Loading..." : "Spin"}</button>
         <br /><br /><br /><br /><br />
         <p>pickIndex: {this.state.pickIndex}</p>
         <p>finalPosition: {this.state.finalPosition}</p>
         <p>isFinished: {this.state.isFinished ? "Y" : "N"}</p>
-        <button onClick={this.handleClick}>Spin</button>
       </div>
     )
   }
