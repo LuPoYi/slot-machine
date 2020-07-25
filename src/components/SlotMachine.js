@@ -6,14 +6,14 @@ class SlotMachine extends Component {
 
   constructor() {
     super()
-
     this.state = {
       startedAt: null,
+      totalItems: 10,
       pickIndex: 0,
       translateY: 0,
       itemHeight: 400,
-      startOffset: 40000,
-      height: 4000,
+      startOffset: 40 * 100, // init distances: itemHeight * (integer)
+      height: 10 * 400, // totalItems * itemHeight
       duration: 4000, // time
       finalPosition: 0,
       isLoading: false,
@@ -24,7 +24,7 @@ class SlotMachine extends Component {
   }
 
   handleClick() {
-    const pickIndex = Math.floor(Math.random() * 10) // 0 ~ 9
+    const pickIndex = Math.floor(Math.random() * this.state.totalItems) // 10: 0 ~ 9
     this.setState({
       pickIndex: pickIndex,
       startedAt: null,
@@ -74,7 +74,7 @@ class SlotMachine extends Component {
       <div>
         <div className="slot-machine">
           <div className="slot-window">
-            <SlotWrap />
+            <SlotWrap totalItems={this.state.totalItems} />
           </div>
         </div>
         <br />
