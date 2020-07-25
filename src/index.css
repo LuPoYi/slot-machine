@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: rgba(219, 219, 219, 0.5);
 }
 
 .App {
@@ -56,3 +57,4 @@ button {
 button:disabled {
   background: gray;
 }
+
