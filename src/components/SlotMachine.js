@@ -12,7 +12,7 @@ class SlotMachine extends Component {
       pickIndex: 0,
       translateY: 0,
       itemHeight: 400,
-      startOffset: 40 * 100, // init distances: itemHeight * (integer)
+      startOffset: 40 * 500, // init distances: itemHeight * (integer)
       height: 10 * 400, // totalItems * itemHeight
       duration: 4000, // time
       finalPosition: 0,
@@ -89,56 +89,3 @@ class SlotMachine extends Component {
 }
 
 export default SlotMachine
-
-
-
-// start: function() {
-//   if (this.opts) {
-//     return
-//   }
-//   const slot = this.$refs.slot
-//   const itemHeight = this.$refs.slotWindow.clientHeight
-//   const length = Object.keys(this.prizes).length;
-//   const choice = vm.winPrizeType
-
-//   this.opts = {
-//     el: slot.querySelector('.slot__wrap'),
-//     finalPos: choice * itemHeight,
-//     startOffset: itemHeight * 100,
-//     height: (length + 1) * itemHeight,
-//     duration: 4000, // milliseconds
-//     isFinished: false,
-//   }
-//   next(this.animate)
-// },
-// animate: function(timestamp) {
-//   if (this.startedAt == null) {
-//     this.startedAt = timestamp
-//   }
-
-//   const timeDiff = timestamp - this.startedAt
-//   if (this.opts.isFinished) {
-//     return
-//   }
-//   const timeRemaining = Math.max(this.opts.duration - timeDiff, 0)
-//   const power = 3
-//   const percentage = 1 - (Math.pow(timeRemaining, power) / Math.pow(this.opts.duration, power))
-//   const offset = percentage * this.opts.startOffset
-//   const pos = -1 * Math.floor((offset + this.opts.finalPos) % this.opts.height)
-
-//   this.opts.el.style.transform = "translateY(" + pos + "px)"
-
-//   if (timeDiff > this.opts.duration) {
-//     this.opts.isFinished = true
-//   }
-
-//   // finish
-//   if (this.opts.isFinished) {
-//     this.opts = null
-//     this.startedAt = null
-//     this.isPulling = false;
-
-//   } else {
-//     next(this.animate)
-//   }
-// },
