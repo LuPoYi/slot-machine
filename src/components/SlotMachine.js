@@ -8,12 +8,12 @@ class SlotMachine extends Component {
     super()
     this.state = {
       startedAt: null,
-      totalItems: 10,
+      totalItems: 23,
       pickIndex: 0,
       translateY: 0,
       itemHeight: 400,
       startOffset: 40 * 500, // init distances: itemHeight * (integer)
-      height: 10 * 400, // totalItems * itemHeight
+      height: 23 * 400, // totalItems * itemHeight
       duration: 4000, // time
       finalPosition: 0,
       isLoading: false,

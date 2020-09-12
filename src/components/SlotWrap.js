@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import SlotItem from './SlotItem';
+import itemData from '../data/itemData.json';
 
 // SlotItem(props) {
 class SlotWrap extends Component {
   render() {
     let lists = [];
-
-    for (let i = 0; i < this.props.totalItems; i++) {
+    
+    itemData.forEach((item) => {
       lists.push(<SlotItem
-        key={i}
-        imgUrl={"https://picsum.photos/400/400?random=" + i}
-        id={i}
+        key={item.name}
+        imgUrl={item.photoURL}
+        name={item.name}
       />)
-    }
+    })
 
     return (
       <div className="slot-wrap" id="slot-wrap">
