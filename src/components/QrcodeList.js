@@ -7,7 +7,7 @@ const QrcodeList = ({ count }) => {
   return (
     <div className="QrcodeList">
       {[...Array(count)].map((x, i) => (
-        <Qrcode key={i} />
+        <Qrcode key={i} value={Math.random().toString(36).substring(6)} />
       ))}
     </div>
   )

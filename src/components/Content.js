@@ -15,9 +15,9 @@ class Content extends Component {
 
   render() {
     return (
-      <div>
+      <div className="content">
         <SlotMachine jsonData={this.state.jsonData} />
-        <QrcodeList count={9} />
+        <QrcodeList count={3} />
       </div>
     )
   }
