@@ -71,7 +71,7 @@ class SlotMachine extends Component {
 
   render() {
     return (
-      <div>
+      <div className="slotMachine">
         <div className="slot-machine">
           <div className="slot-window">
             <SlotWrap totalItems={this.state.totalItems} />

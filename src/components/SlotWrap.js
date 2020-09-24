@@ -1,18 +1,13 @@
-import React, { Component } from 'react';
-import SlotItem from './SlotItem';
-import itemData from '../data/itemData.json';
+import React, { Component } from 'react'
+import SlotItem from './SlotItem'
+import itemData from '../data/itemData.json'
 
-// SlotItem(props) {
 class SlotWrap extends Component {
   render() {
-    let lists = [];
-    
+    let lists = []
+
     itemData.forEach((item) => {
-      lists.push(<SlotItem
-        key={item.name}
-        imgUrl={item.photoURL}
-        name={item.name}
-      />)
+      lists.push(<SlotItem key={item.name} imgUrl={item.photoURL} name={item.name} />)
     })
 
     return (

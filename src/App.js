@@ -1,15 +1,13 @@
 import React from 'react';
 import Header from './components/Header'
+import Content from './components/Content'
 import Footer from './components/Footer'
-import SlotMachine from './components/SlotMachine'
-
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <SlotMachine />
-
+      <Content />
       <Footer />
     </div>
   );
