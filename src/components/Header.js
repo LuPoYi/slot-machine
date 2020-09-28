@@ -1,17 +1,31 @@
-import React from "react";
-import Navbar from "react-bootstrap/Navbar";
-import Nav from "react-bootstrap/Nav";
+import React from 'react'
+import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core'
+import RefreshIcon from '@material-ui/icons/Refresh';
 
-function Footer() {
+const Header = () => {
+  const refreshPage = () => {
+    window.location.reload()
+  }
+
   return (
-    <Navbar bg="dark" variant="dark">
-      <Nav className="mr-auto">
-        <Nav.Link href="#home">Home</Nav.Link>
-        <Nav.Link href="#pricing">Game</Nav.Link>
-        <Nav.Link href="#members">Members</Nav.Link>
-      </Nav>
-    </Navbar>
-  );
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h4">Slot Machine 1.1</Typography>
+      
+      <div>
+        <IconButton
+          aria-label="account of current user"
+          aria-controls="menu-appbar"
+          aria-haspopup="true"
+          onClick={refreshPage}
+          color="inherit"
+          >
+          <RefreshIcon />
+          </IconButton>
+      </div>
+      </Toolbar>
+    </AppBar>
+  )
 }
 
-export default Footer;
+export default Header

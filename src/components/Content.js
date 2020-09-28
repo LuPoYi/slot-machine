@@ -1,26 +1,24 @@
-import React, { Component } from 'react'
-import SlotMachine from './SlotMachine'
+import React, { Component, useState } from 'react'
+import Welcome from './Welcome'
 import QrcodeList from './QrcodeList'
+import SlotMachine from './SlotMachine'
 import itemData from '../data/itemData.json'
 
-class Content extends Component {
-  constructor() {
-    super()
-    this.state = { jsonData: JSON.stringify(itemData) }
+const Content = ({ count }) => {
+  const [data, setData] = useState(null)
+  const [status, setStatus] = useState(0)
+
+  const nextStep = (st) => {
+    setStatus(status + 1)
   }
 
-  updateJsonData(jsonData) {
-    this.setState({ jsonData: jsonData })
-  }
-
-  render() {
-    return (
-      <div className="content">
-        <SlotMachine jsonData={this.state.jsonData} />
-        <QrcodeList count={3} />
-      </div>
-    )
-  }
+  return (
+    <div className="content">
+      {status == 0 && <Welcome nextStepEvent={nextStep} />}
+      {status == 1 && <QrcodeList count={3} nextStepEvent={nextStep} />}
+      {status == 2 && <SlotMachine count={3} />}
+    </div>
+  )
 }
 
 export default Content
