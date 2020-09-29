@@ -7,15 +7,21 @@ import itemData from '../data/itemData.json'
 const Content = ({ count }) => {
   const [data, setData] = useState(null)
   const [status, setStatus] = useState(0)
+  const [doc, setDoc] = useState('')
 
   const nextStep = (st) => {
     setStatus(status + 1)
   }
 
+  const handleStartOnClick = (game_doc) => {
+    setDoc(game_doc)
+    setStatus(1)
+  }
+
   return (
     <div className="content">
-      {status == 0 && <Welcome nextStepEvent={nextStep} />}
-      {status == 1 && <QrcodeList count={3} nextStepEvent={nextStep} />}
+      {status == 0 && <Welcome handleStartOnClick={handleStartOnClick} />}
+      {status == 1 && <QrcodeList doc={doc} nextStepEvent={nextStep} />}
       {status == 2 && <SlotMachine count={3} />}
     </div>
   )
