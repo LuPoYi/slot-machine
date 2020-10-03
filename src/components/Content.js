@@ -13,8 +13,8 @@ const Content = ({ count }) => {
     setStatus(status + 1)
   }
 
-  const handleStartOnClick = (game_doc) => {
-    setDoc(game_doc)
+  const handleStartOnClick = (gameDoc) => {
+    setDoc(gameDoc)
     setStatus(1)
   }
 

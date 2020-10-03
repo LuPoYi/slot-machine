@@ -20,9 +20,9 @@ footer {
   bottom: 0;
 }
 
-.content > div {
+/* .content > div {
   float: left;
-}
+} */
 
 .slot-machine {
   height: 400px;

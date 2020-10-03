@@ -6,27 +6,27 @@ const Welcome = ({ handleStartOnClick }) => {
   const generateNewGame = () => {
     const db = firebase.firestore()
     const data = []
-    const game_doc = (+new Date()).toString()
-    Array.from(Array(10), (_, i) =>
+    const gameDoc = (+new Date()).toString()
+    Array.from(Array(9), (_, i) =>
       data.push({
         index: i,
         name: '',
         photoURL: '',
-        status: 0,
+        state: 0,
         qrcode: Math.random().toString(36).substring(6),
       })
     )
 
     db.collection('games')
-      .doc(game_doc)
+      .doc(gameDoc)
       .set({
         data: data,
-        status: 'preparation',
+        state: 0,
         result: '',
       })
       .then(function () {
         console.log('Document successfully written!')
-        handleStartOnClick(game_doc)
+        handleStartOnClick(gameDoc)
       })
       .catch(function (error) {
         console.error('Error writing document: ', error)
