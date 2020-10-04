@@ -1,28 +1,26 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import Welcome from './Welcome'
 import QrcodeList from './QrcodeList'
 import SlotMachine from './SlotMachine'
-import itemData from '../data/itemData.json'
 
 const Content = ({ count }) => {
-  const [data, setData] = useState(null)
-  const [status, setStatus] = useState(0)
-  const [doc, setDoc] = useState('')
+  const [state, setState] = useState(0)
+  const [gameDoc, setGameDoc] = useState('')
 
-  const nextStep = (st) => {
-    setStatus(status + 1)
+  const nextStep = () => {
+    setState(state + 1)
   }
 
-  const handleStartOnClick = (gameDoc) => {
-    setDoc(gameDoc)
-    setStatus(1)
+  const handleStartOnClick = (doc) => {
+    setGameDoc(doc)
+    setState(1)
   }
 
   return (
     <div className="content">
-      {status == 0 && <Welcome handleStartOnClick={handleStartOnClick} />}
-      {status == 1 && <QrcodeList doc={doc} nextStepEvent={nextStep} />}
-      {status == 2 && <SlotMachine count={3} />}
+      {state === 0 && <Welcome handleStartOnClick={handleStartOnClick} />}
+      {state === 1 && <QrcodeList gameDoc={gameDoc} nextStepEvent={nextStep} />}
+      {state === 2 && <SlotMachine gameDoc={gameDoc} />}
     </div>
   )
 }

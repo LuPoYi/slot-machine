@@ -5,31 +5,41 @@ import Button from '@material-ui/core/Button'
 const Welcome = ({ handleStartOnClick }) => {
   const generateNewGame = () => {
     const db = firebase.firestore()
-    const data = []
     const gameDoc = (+new Date()).toString()
+
     Array.from(Array(9), (_, i) =>
-      data.push({
-        index: i,
-        name: '',
-        photoURL: '',
-        state: 0,
-        qrcode: Math.random().toString(36).substring(6),
-      })
+      db
+        .collection('games')
+        .doc(gameDoc)
+        .collection('cards')
+        .doc(Math.random().toString(36).substring(6))
+        .set({
+          index: i,
+          name: '',
+          photoURL: '',
+          state: 0,
+        })
+        .then(function () {
+          console.log('Document successfully written1!')
+          handleStartOnClick(gameDoc)
+        })
+        .catch(function (error) {
+          console.error('Error writing document1: ', error)
+        })
     )
 
     db.collection('games')
       .doc(gameDoc)
       .set({
-        data: data,
         state: 0,
         result: '',
       })
       .then(function () {
-        console.log('Document successfully written!')
+        console.log('Document successfully written2!')
         handleStartOnClick(gameDoc)
       })
       .catch(function (error) {
-        console.error('Error writing document: ', error)
+        console.error('Error writing document2: ', error)
       })
   }
 
