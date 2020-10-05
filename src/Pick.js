@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles'
 import itemData from './data/itemData.json'
 import Button from '@material-ui/core/Button'
 import { shuffleArray } from './lib/helper'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 
 // 背景確認url是否正確
 // 列出全部成員
@@ -32,9 +34,25 @@ const useStyles = makeStyles({
     bottom: 20,
     right: 20,
   },
+  memberHeart: {
+    position: 'absolute',
+    top: 15,
+    left: 15,
+    color: 'red',
+    textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black',
+  },
 })
 
 const Pick = () => {
+  const [isPickable, setIsPickable] = useState(false)
+  const [isPicking, setIsPicking] = useState(false)
+  const [isComplete, setIsComplete] = useState(false)
+
+  const [memberSet, setMemberSet] = useState(() => {
+    const initialState = shuffleArray(itemData)
+    return initialState
+  })
+
   const classes = useStyles()
   const { gameDoc, cardDoc } = useParams()
   const db = firebase.firestore()
@@ -59,7 +77,8 @@ const Pick = () => {
         break
       }
     }
-    setMemberSet(memberSet)
+
+    setMemberSet([...memberSet])
   }
 
   // Firebase - update pick state to next 0 -> 1
@@ -74,11 +93,6 @@ const Pick = () => {
     setIsPicking(true)
   }
 
-  const [isPickable, setIsPickable] = useState(false)
-  const [isPicking, setIsPicking] = useState(false)
-  const [isComplete, setIsComplete] = useState(false)
-  const [memberSet, setMemberSet] = useState(shuffleArray(itemData))
-
   let memberImgList = memberSet.map((item) => {
     return (
       <div className={classes.member}>
@@ -89,6 +103,36 @@ const Pick = () => {
           alt={'alt'}
           onClick={() => handleImgOnClick(item.name, item.photoURL)}></img>
         <div className={classes.memberName}>{item.name}</div>
+        <div className={classes.memberHeart}>
+          {item.count == 0 && (
+            <div>
+              <FavoriteBorderIcon />
+              <FavoriteBorderIcon />
+              <FavoriteBorderIcon />
+            </div>
+          )}
+          {item.count == 1 && (
+            <div>
+              <FavoriteIcon />
+              <FavoriteBorderIcon />
+              <FavoriteBorderIcon />
+            </div>
+          )}
+          {item.count == 2 && (
+            <div>
+              <FavoriteIcon />
+              <FavoriteIcon />
+              <FavoriteBorderIcon />
+            </div>
+          )}
+          {item.count == 3 && (
+            <div>
+              <FavoriteIcon />
+              <FavoriteIcon />
+              <FavoriteIcon />
+            </div>
+          )}
+        </div>
       </div>
     )
   })
@@ -105,20 +149,19 @@ const Pick = () => {
 
   return (
     <div className={classes.root}>
-      Pick~~~ {isComplete && <h1>Good Job!</h1>}
-      <div>
-        <h2>gameDoc: {gameDoc}</h2>
-        <h3>cardDoc: {cardDoc}</h3>
-        <h3>isPickable: {isPickable ? 'T' : 'F'}</h3>
-        <h3>isPicking: {isPicking ? 'T' : 'F'}</h3>
-
-        {isPickable && !isPicking && (
-          <Button variant="contained" color="primary" onClick={handleStartOnClick}>
-            Start!
-          </Button>
-        )}
-        {isPickable && isPicking && memberImgList}
-      </div>
+      Pick~~~ {isComplete && <p>Good Job!</p>}
+      <p>
+        gameDoc: {gameDoc} cardDoc: {cardDoc}
+      </p>
+      <p>
+        isPickable: {isPickable ? 'T' : 'F'}; isPicking: {isPicking ? 'T' : 'F'}
+      </p>
+      {isPickable && !isPicking && (
+        <Button variant="contained" color="primary" onClick={handleStartOnClick}>
+          Start!
+        </Button>
+      )}
+      {isPickable && isPicking && memberImgList}
     </div>
   )
 }
