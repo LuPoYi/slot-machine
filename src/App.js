@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Header from './components/Header'
-import Content from './components/Content'
+import Game from './pages/Game'
 import Footer from './components/Footer'
 import Wheel from './pages/Game/Wheel'
 import Pick from './pages/Pick'
@@ -12,7 +12,7 @@ function App() {
       <div className="App">
         <Route path="/" exact>
           <Header />
-          <Content count={9} />
+          <Game count={6} />
           <Footer />
         </Route>
 

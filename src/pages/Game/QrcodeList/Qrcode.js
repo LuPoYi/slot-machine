@@ -1,6 +1,6 @@
 import React from 'react'
 import QRCode from 'qrcode.react'
-import firebase from '../utils/firebase'
+import firebase from '../../../utils/firebase'
 import { makeStyles } from '@material-ui/core/styles'
 
 // Qrcode

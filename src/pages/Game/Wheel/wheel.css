@@ -1,31 +1,9 @@
-* {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background: #eaeaea;
-  color: #fff;
-  font-size: 18px;
-  font-family: 'Exo 2', sans-serif;
-}
-
-a {
-  color: #34495e;
-}
-
-/*WRAPPER*/
 #wrapper {
   margin: 40px auto 0;
   width: 266px;
   position: relative;
 }
 
-#txt {
-  color: #eaeaea;
-}
-
-/*WHEEL*/
 #wheel {
   width: 250px;
   height: 250px;
@@ -120,14 +98,14 @@ a {
   border-color: #c0392b transparent;
 }
 
-#wheel div.sec .fa {
+#wheel div.sec .name {
   margin-top: -100px;
   color: rgba(0, 0, 0, 0.2);
   position: relative;
   z-index: 10000000;
   display: block;
   text-align: center;
-  font-size: 36px;
+  font-size: 24px;
   margin-left: -15px;
 
   text-shadow: rgba(255, 255, 255, 0.1) 0px -1px 0px, rgba(0, 0, 0, 0.2) 0px 1px 0px;
@@ -333,4 +311,9 @@ a {
 .spin {
   -webkit-animation: hh 0.1s; /* Chrome, Safari, Opera */
   animation: hh 0.1s;
+}
+
+.test {
+  background-image: url(https://ca.slack-edge.com/TGQCRQ19V-UGNK3SF24-7fd0f15d7b10-512);
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
 }

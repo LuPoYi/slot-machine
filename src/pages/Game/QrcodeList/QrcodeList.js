@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Qrcode from './Qrcode'
-import firebase from '../utils/firebase'
+import firebase from '../../../utils/firebase'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
-import itemData from '../assets/itemData.json'
+import itemData from '../../../assets/itemData.json'
 
 const useStyles = makeStyles({
   root: {
@@ -11,7 +11,7 @@ const useStyles = makeStyles({
   },
 })
 
-const QrcodeList = ({ gameDoc, nextStepEvent }) => {
+const QrcodeList = ({ gameDoc, handleNextOnClick }) => {
   const classes = useStyles()
 
   const [cardSet, setCardSet] = useState({})
@@ -61,11 +61,14 @@ const QrcodeList = ({ gameDoc, nextStepEvent }) => {
         />
       ))}
 
-      <Button variant="contained" color="primary" onClick={nextStepEvent}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() => handleNextOnClick(Object.values(cardSet).map((item) => item.name))}>
         Next!
       </Button>
 
-      <Button color="default" onClick={handleRandomPickOnClick}>
+      <Button color="default" onClick={() => handleRandomPickOnClick()}>
         Random
       </Button>
     </div>

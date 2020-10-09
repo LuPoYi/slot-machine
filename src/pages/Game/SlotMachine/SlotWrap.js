@@ -1,5 +1,5 @@
 import React from 'react'
-import itemData from '../assets/itemData.json'
+import itemData from '../../../assets/itemData.json'
 
 const SlotWrap = () => {
   const SlotItem = ({ photoURL, name }) => {

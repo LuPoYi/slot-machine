@@ -1,13 +1,13 @@
 import React from 'react'
-import firebase from '../utils/firebase'
+import firebase from '../../../utils/firebase'
 import Button from '@material-ui/core/Button'
 
-const Welcome = ({ handleStartOnClick }) => {
+const Welcome = ({ count, handleStartOnClick }) => {
   const generateNewGame = () => {
     const db = firebase.firestore()
     const gameDoc = (+new Date()).toString()
 
-    Array.from(Array(9), (_, i) =>
+    Array.from(Array(count), (_, i) =>
       db
         .collection('games')
         .doc(gameDoc)
