@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import firebase from 'firebase'
 import { useParams } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles'
-import itemData from './data/itemData.json'
+import itemData from '../../assets/itemData.json'
 import Button from '@material-ui/core/Button'
-import { shuffleArray } from './lib/helper'
+import { shuffleArray } from '../../utils/helper'
 import FavoriteIcon from '@material-ui/icons/Favorite'
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
 
@@ -104,28 +104,28 @@ const Pick = () => {
           onClick={() => handleImgOnClick(item.name, item.photoURL)}></img>
         <div className={classes.memberName}>{item.name}</div>
         <div className={classes.memberHeart}>
-          {item.count == 0 && (
+          {item.count === 0 && (
             <div>
               <FavoriteBorderIcon />
               <FavoriteBorderIcon />
               <FavoriteBorderIcon />
             </div>
           )}
-          {item.count == 1 && (
+          {item.count === 1 && (
             <div>
               <FavoriteIcon />
               <FavoriteBorderIcon />
               <FavoriteBorderIcon />
             </div>
           )}
-          {item.count == 2 && (
+          {item.count === 2 && (
             <div>
               <FavoriteIcon />
               <FavoriteIcon />
               <FavoriteBorderIcon />
             </div>
           )}
-          {item.count == 3 && (
+          {item.count === 3 && (
             <div>
               <FavoriteIcon />
               <FavoriteIcon />

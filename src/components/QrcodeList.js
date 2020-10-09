@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Qrcode from './Qrcode'
-import firebase from '../firebase'
+import firebase from '../utils/firebase'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
-import itemData from '../data/itemData.json'
+import itemData from '../assets/itemData.json'
 
 const useStyles = makeStyles({
   root: {
