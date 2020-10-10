@@ -1,9 +1,13 @@
 import React from 'react'
 import firebase from '../../../utils/firebase'
 import Button from '@material-ui/core/Button'
+import { useHistory } from 'react-router-dom'
 
-const Welcome = ({ count, handleStartOnClick }) => {
+const Welcome = ({ count }) => {
+  let history = useHistory()
+
   const generateNewGame = () => {
+    let isError = false // TODO promise
     const db = firebase.firestore()
     const gameDoc = (+new Date()).toString()
 
@@ -21,9 +25,9 @@ const Welcome = ({ count, handleStartOnClick }) => {
         })
         .then(function () {
           console.log('Document successfully written1!')
-          handleStartOnClick(gameDoc)
         })
         .catch(function (error) {
+          isError = true
           console.error('Error writing document1: ', error)
         })
     )
@@ -36,11 +40,14 @@ const Welcome = ({ count, handleStartOnClick }) => {
       })
       .then(function () {
         console.log('Document successfully written2!')
-        handleStartOnClick(gameDoc)
       })
       .catch(function (error) {
+        isError = true
         console.error('Error writing document2: ', error)
       })
+    if (!isError) {
+      history.push(`/game/${gameDoc}`)
+    }
   }
 
   return (

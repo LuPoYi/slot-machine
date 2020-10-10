@@ -5,8 +5,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import itemData from '../../assets/itemData.json'
 import Button from '@material-ui/core/Button'
 import { shuffleArray } from '../../utils/helper'
-import FavoriteIcon from '@material-ui/icons/Favorite'
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'
+import MemberImg from '../../components/MemberImg'
 
 // 背景確認url是否正確
 // 列出全部成員
@@ -47,6 +46,7 @@ const Pick = () => {
   const [isPickable, setIsPickable] = useState(false)
   const [isPicking, setIsPicking] = useState(false)
   const [isComplete, setIsComplete] = useState(false)
+  const [pickedMember, setPickedMember] = useState({})
 
   const [memberSet, setMemberSet] = useState(() => {
     const initialState = shuffleArray(itemData)
@@ -62,8 +62,7 @@ const Pick = () => {
   const handleImgOnClick = (name, photoURL) => {
     for (let i = 0; i < memberSet.length; i++) {
       if (memberSet[i].name === name) {
-        memberSet[i].count++
-        if (memberSet[i].count >= 3) {
+        if (memberSet[i].count > 2) {
           cardRef.set(
             {
               name: name,
@@ -72,8 +71,17 @@ const Pick = () => {
             },
             { merge: true }
           )
+          setPickedMember({
+            name: name,
+            photoURL: photoURL,
+          })
+          setIsComplete(true)
+          setIsPickable(false)
+          setIsPicking(false)
+        } else {
+          memberSet[i].count++
         }
-        setIsComplete(true)
+
         break
       }
     }
@@ -93,49 +101,9 @@ const Pick = () => {
     setIsPicking(true)
   }
 
-  let memberImgList = memberSet.map((item) => {
-    return (
-      <div className={classes.member}>
-        <img
-          className={classes.memberPhoto}
-          key={item.name}
-          src={item.photoURL}
-          alt={'alt'}
-          onClick={() => handleImgOnClick(item.name, item.photoURL)}></img>
-        <div className={classes.memberName}>{item.name}</div>
-        <div className={classes.memberHeart}>
-          {item.count === 0 && (
-            <div>
-              <FavoriteBorderIcon />
-              <FavoriteBorderIcon />
-              <FavoriteBorderIcon />
-            </div>
-          )}
-          {item.count === 1 && (
-            <div>
-              <FavoriteIcon />
-              <FavoriteBorderIcon />
-              <FavoriteBorderIcon />
-            </div>
-          )}
-          {item.count === 2 && (
-            <div>
-              <FavoriteIcon />
-              <FavoriteIcon />
-              <FavoriteBorderIcon />
-            </div>
-          )}
-          {item.count === 3 && (
-            <div>
-              <FavoriteIcon />
-              <FavoriteIcon />
-              <FavoriteIcon />
-            </div>
-          )}
-        </div>
-      </div>
-    )
-  })
+  useEffect(() => {
+    document.title = 'Pick'
+  }, [])
 
   useEffect(() => {
     cardRef.get().then(function (doc) {
@@ -149,19 +117,30 @@ const Pick = () => {
 
   return (
     <div className={classes.root}>
-      Pick~~~ {isComplete && <p>Good Job!</p>}
+      {isComplete && <p>Good Job!</p>}
       <p>
-        gameDoc: {gameDoc} cardDoc: {cardDoc}
-      </p>
-      <p>
-        isPickable: {isPickable ? 'T' : 'F'}; isPicking: {isPicking ? 'T' : 'F'}
+        gameDoc: {gameDoc} ; cardDoc: {cardDoc} ; isPickable: {isPickable ? 'T' : 'F'} ; isPicking:{' '}
+        {isPicking ? 'T' : 'F'}
       </p>
       {isPickable && !isPicking && (
         <Button variant="contained" color="primary" onClick={handleStartOnClick}>
           Start!
         </Button>
       )}
-      {isPickable && isPicking && memberImgList}
+      {isPickable &&
+        isPicking &&
+        memberSet.map((item) => (
+          <MemberImg
+            classes={classes}
+            name={item.name}
+            photoURL={item.photoURL}
+            count={item.count}
+            handleImgOnClick={handleImgOnClick}
+          />
+        ))}
+      {isComplete && (
+        <MemberImg classes={classes} name={pickedMember.name} photoURL={pickedMember.photoURL} />
+      )}
     </div>
   )
 }

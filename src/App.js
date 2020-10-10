@@ -1,26 +1,35 @@
 import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Header from './components/Header'
-import Game from './pages/Game'
+import { Game, Welcome, Wheel, SlotMachine, QrcodeList } from './pages/Game'
 import Footer from './components/Footer'
-import Wheel from './pages/Game/Wheel'
+
 import Pick from './pages/Pick'
 
 function App() {
   return (
     <Router>
       <div className="App">
+        <Header />
+
         <Route path="/" exact>
-          <Header />
-          <Game count={6} />
-          <Footer />
+          <Welcome count={6} />
         </Route>
+
+        <Route path="/game/:gameDoc">
+          <Game />
+        </Route>
+
+        <Footer />
 
         <Route path="/pick/:gameDoc/:cardDoc">
           <Pick />
         </Route>
-        <Route path="/game">
+        <Route path="/game/wheel">
           <Wheel />
+        </Route>
+        <Route path="/game/slotMachine">
+          <SlotMachine />
         </Route>
       </div>
     </Router>

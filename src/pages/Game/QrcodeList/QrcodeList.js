@@ -4,6 +4,8 @@ import firebase from '../../../utils/firebase'
 import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import itemData from '../../../assets/itemData.json'
+import { useParams, useLocation } from 'react-router-dom'
+import queryString from 'query-string'
 
 const useStyles = makeStyles({
   root: {
@@ -11,10 +13,19 @@ const useStyles = makeStyles({
   },
 })
 
-const QrcodeList = ({ gameDoc, handleNextOnClick }) => {
+const QrcodeList = ({ handleNextOnClick }) => {
   const classes = useStyles()
 
   const [cardSet, setCardSet] = useState({})
+  const [isShowPickURL, setIsShowPickURL] = useState(false)
+  const { gameDoc } = useParams()
+  const location = useLocation()
+
+  useEffect(() => {
+    if (queryString.parse(location.search)['showUrl']) {
+      setIsShowPickURL(true)
+    }
+  }, [])
 
   useEffect(() => {
     const db = firebase.firestore()
@@ -58,6 +69,7 @@ const QrcodeList = ({ gameDoc, handleNextOnClick }) => {
           gameDoc={gameDoc}
           state={cardSet[key]['state']}
           photoURL={cardSet[key]['photoURL']}
+          isShowPickURL={isShowPickURL}
         />
       ))}
 
