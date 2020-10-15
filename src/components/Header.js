@@ -1,30 +1,45 @@
 import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
 import { AppBar, Toolbar, Typography, IconButton } from '@material-ui/core'
-import RefreshIcon from '@material-ui/icons/Refresh';
+import RefreshIcon from '@material-ui/icons/Refresh'
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}))
 
 const Header = () => {
+  const classes = useStyles()
+
   const refreshPage = () => {
     window.location.reload()
   }
 
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <Typography variant="h4">Slot Machine 1.1</Typography>
-      
-      <div>
-        <IconButton
-          aria-label="account of current user"
-          aria-controls="menu-appbar"
-          aria-haspopup="true"
-          onClick={refreshPage}
-          color="inherit"
-          >
-          <RefreshIcon />
+    <div className={classes.root}>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h6" className={classes.title}>
+            Slot Machine 1.1
+          </Typography>
+          <IconButton
+            aria-label="refresh page"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            onClick={refreshPage}
+            color="inherit">
+            <RefreshIcon />
           </IconButton>
-      </div>
-      </Toolbar>
-    </AppBar>
+        </Toolbar>
+      </AppBar>
+    </div>
   )
 }
 

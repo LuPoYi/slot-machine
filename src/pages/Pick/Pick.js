@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
   member: {
     float: 'left',
-    width: '50%',
+    width: '33%',
     position: 'relative',
     cursor: 'pointer',
   },
@@ -117,11 +117,8 @@ const Pick = () => {
 
   return (
     <div className={classes.root}>
-      {isComplete && <p>Good Job!</p>}
-      <p>
-        gameDoc: {gameDoc} ; cardDoc: {cardDoc} ; isPickable: {isPickable ? 'T' : 'F'} ; isPicking:{' '}
-        {isPicking ? 'T' : 'F'}
-      </p>
+      {isComplete && <p>Done!</p>}
+      <br />
       {isPickable && !isPicking && (
         <Button variant="contained" color="primary" onClick={handleStartOnClick}>
           Start!
@@ -141,6 +138,10 @@ const Pick = () => {
       {isComplete && (
         <MemberImg classes={classes} name={pickedMember.name} photoURL={pickedMember.photoURL} />
       )}
+      <p style={{ color: 'white' }}>
+        gameDoc: {gameDoc} ; cardDoc: {cardDoc} ; isPickable: {isPickable ? 'T' : 'F'} ; isPicking:{' '}
+        {isPicking ? 'T' : 'F'}
+      </p>
     </div>
   )
 }

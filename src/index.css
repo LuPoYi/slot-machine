@@ -57,10 +57,10 @@ footer {
   bottom: 30px;
   right: 30px;
 }
-
+/* 
 button {
   width: 400px;
-  background-color: #4caf50; /* Green */
+  background-color: #4caf50;
   border: none;
   color: white;
   padding: 15px 32px;
@@ -73,4 +73,4 @@ button {
 
 button:disabled {
   background: gray;
-}
+} */

@@ -42,6 +42,7 @@ const QrcodeList = ({ handleNextOnClick }) => {
     db.collection('games')
       .doc(gameDoc)
       .collection('cards')
+      .where('state', '!=', 2)
       .get()
       .then((snapshot) => {
         const itemDataLength = itemData.length

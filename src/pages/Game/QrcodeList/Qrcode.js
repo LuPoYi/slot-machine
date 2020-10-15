@@ -20,9 +20,10 @@ const Qrcode = ({ gameDoc, cardDoc, state, photoURL, isShowPickURL }) => {
 
   return (
     <div className={classes.root}>
-      {state === 0 && <QRCode value={url} />}
-      {state === 1 && <QRCode value={url} fgColor={'#CCCCCC'} />}
+      {state === 0 && <QRCode value={url} dataUrl={url} />}
+      {state === 1 && <QRCode value={url} fgColor={'#CCCCCC'} dataUrl={url} />}
       {state === 2 && <img width="128" height="128" src={photoURL} alt={'alt'}></img>}
+
       {isShowPickURL && <p>{url}</p>}
     </div>
   )
