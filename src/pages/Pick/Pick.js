@@ -62,7 +62,9 @@ const Pick = () => {
   const handleImgOnClick = (name, photoURL) => {
     for (let i = 0; i < memberSet.length; i++) {
       if (memberSet[i].name === name) {
-        if (memberSet[i].count > 2) {
+        memberSet[i].count++
+
+        if (memberSet[i].count >= 3) {
           cardRef.set(
             {
               name: name,
@@ -78,8 +80,6 @@ const Pick = () => {
           setIsComplete(true)
           setIsPickable(false)
           setIsPicking(false)
-        } else {
-          memberSet[i].count++
         }
 
         break
@@ -136,9 +136,14 @@ const Pick = () => {
           />
         ))}
       {isComplete && (
-        <MemberImg classes={classes} name={pickedMember.name} photoURL={pickedMember.photoURL} />
+        <MemberImg
+          classes={classes}
+          name={pickedMember.name}
+          photoURL={pickedMember.photoURL}
+          count={3}
+        />
       )}
-      <p style={{ color: 'white' }}>
+      <p style={{ color: 'hsla(0,0%,85.9%,.5)' }}>
         gameDoc: {gameDoc} ; cardDoc: {cardDoc} ; isPickable: {isPickable ? 'T' : 'F'} ; isPicking:{' '}
         {isPicking ? 'T' : 'F'}
       </p>

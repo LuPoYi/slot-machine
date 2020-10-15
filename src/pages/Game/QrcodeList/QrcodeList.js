@@ -70,6 +70,7 @@ const QrcodeList = ({ handleNextOnClick }) => {
           gameDoc={gameDoc}
           state={cardSet[key]['state']}
           photoURL={cardSet[key]['photoURL']}
+          name={cardSet[key]['name']}
           isShowPickURL={isShowPickURL}
         />
       ))}
