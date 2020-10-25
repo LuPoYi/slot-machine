@@ -7,3 +7,8 @@ Use React to do something for learning [slot machine](https://sleepy-oasis-28462
 * QRCodePage will show who is picked
 * QRCodePage -> WheelPage
 * rolling the wheel, done.
+
+
+## TODO or ideas
+
+* bullet screen 彈幕功能
