@@ -27,7 +27,7 @@ const Header = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Slot Machine 1.1
+            抽一下 1.2
           </Typography>
           <IconButton
             aria-label="refresh page"

@@ -61,7 +61,7 @@ const Welcome = ({ count }) => {
   return (
     <div>
       <h1>Welcome!</h1>
-      <div>
+      {/* <div>
         <InputLabel id="demo-simple-select-label">group</InputLabel>
         <Select
           labelId="demo-simple-select-label"
@@ -72,7 +72,7 @@ const Welcome = ({ count }) => {
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
-      </div>
+      </div> */}
 
       <Button variant="contained" color="primary" onClick={generateNewGame}>
         Start~
